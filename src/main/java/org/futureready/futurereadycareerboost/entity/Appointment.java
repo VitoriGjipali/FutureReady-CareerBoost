@@ -28,6 +28,4 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "mentor_id")
     private Mentor mentor;
-
-
 }
