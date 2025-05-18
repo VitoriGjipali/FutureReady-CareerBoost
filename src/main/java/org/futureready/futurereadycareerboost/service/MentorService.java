@@ -14,6 +14,7 @@ public class MentorService {
     @Autowired
     private MentorRepository mentorRepository;
 
+
     public List<Mentor> getAllMentors() {
         return mentorRepository.findAll();
     }
@@ -27,21 +28,22 @@ public class MentorService {
     }
 
     public Mentor updateMentor(Long id, Mentor updatedMentor) {
-        return mentorRepository.findById(id).map(m -> {
-            m.setEmri(updatedMentor.getEmri());
-            m.setFusha(updatedMentor.getFusha());
-            m.setEksperienca(updatedMentor.getEksperienca());
-            m.setOraretELira(updatedMentor.getOraretELira());
-            m.setAvailable(updatedMentor.isAvailable());
-            return mentorRepository.save(m);
-        }).orElseThrow(() -> new RuntimeException("Mentori nuk u gjet"));
+        return mentorRepository.findById(id).map(mentor -> {
+            mentor.setName(updatedMentor.getName());
+            mentor.setField(updatedMentor.getField());
+            mentor.setExperience(updatedMentor.getExperience());
+            mentor.setAvailableTimes(updatedMentor.getAvailableTimes());
+            mentor.setAvailable(updatedMentor.isAvailable());
+            return mentorRepository.save(mentor);
+        }).orElseThrow(() -> new RuntimeException("Mentor not found"));
     }
 
     public void deleteMentor(Long id) {
         mentorRepository.deleteById(id);
     }
 
-    public List<Mentor> getMentorsByFusha(String fusha) {
-        return mentorRepository.findByFusha(fusha);
+
+    public List<Mentor> getMentorsByField(String field) {
+        return mentorRepository.findByFieldContainingIgnoreCase(field);
     }
 }

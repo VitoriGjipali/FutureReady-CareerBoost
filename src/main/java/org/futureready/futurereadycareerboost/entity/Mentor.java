@@ -9,20 +9,20 @@ public class Mentor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String emri;
-    private String fusha;
-    private String eksperienca;
-    private String oraretELira;
+    private String name;
+    private String field;
+    private String experience;
+    private String availableTimes;
     private boolean isAvailable;
 
     public Mentor() {
     }
 
-    public Mentor(String emri, String fusha, String eksperienca, String oraretELira, boolean isAvailable) {
-        this.emri = emri;
-        this.fusha = fusha;
-        this.eksperienca = eksperienca;
-        this.oraretELira = oraretELira;
+    public Mentor(String name, String field, String experience, String availableTimes, boolean isAvailable) {
+        this.name = name;
+        this.field = field;
+        this.experience = experience;
+        this.availableTimes = availableTimes;
         this.isAvailable = isAvailable;
     }
 
@@ -30,36 +30,36 @@ public class Mentor {
         return id;
     }
 
-    public String getEmri() {
-        return emri;
+    public String getName() {
+        return name;
     }
 
-    public void setEmri(String emri) {
-        this.emri = emri;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFusha() {
-        return fusha;
+    public String getField() {
+        return field;
     }
 
-    public void setFusha(String fusha) {
-        this.fusha = fusha;
+    public void setField(String field) {
+        this.field = field;
     }
 
-    public String getEksperienca() {
-        return eksperienca;
+    public String getExperience() {
+        return experience;
     }
 
-    public void setEksperienca(String eksperienca) {
-        this.eksperienca = eksperienca;
+    public void setExperience(String experience) {
+        this.experience = experience;
     }
 
-    public String getOraretELira() {
-        return oraretELira;
+    public String getAvailableTimes() {
+        return availableTimes;
     }
 
-    public void setOraretELira(String oraretELira) {
-        this.oraretELira = oraretELira;
+    public void setAvailableTimes(String availableTimes) {
+        this.availableTimes = availableTimes;
     }
 
     public boolean isAvailable() {

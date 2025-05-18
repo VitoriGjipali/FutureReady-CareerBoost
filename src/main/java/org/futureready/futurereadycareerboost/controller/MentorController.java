@@ -50,7 +50,7 @@ public class MentorController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Mentor>> getMentorsByFusha(@RequestParam String fusha) {
-        return ResponseEntity.ok(mentorService.getMentorsByFusha(fusha));
+    public ResponseEntity<List<Mentor>> getMentorsByField(@RequestParam String field) {
+        return ResponseEntity.ok(mentorService.getMentorsByField(field));
     }
 }
