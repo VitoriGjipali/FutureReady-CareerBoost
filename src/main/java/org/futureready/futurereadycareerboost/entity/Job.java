@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +21,7 @@ public class Job {
 
     private String title;
     private String description;
-    private   String deadline ;
+    private LocalDate deadline ;
 
     @ManyToOne
     private Business business ;

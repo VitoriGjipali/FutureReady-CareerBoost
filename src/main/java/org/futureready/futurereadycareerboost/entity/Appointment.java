@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class Appointment {
 
     @Id
+    @Enumerated(EnumType.STRING)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -28,4 +29,6 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "mentor_id")
     private Mentor mentor;
+
+
 }
