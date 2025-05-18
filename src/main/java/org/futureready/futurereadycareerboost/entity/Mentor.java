@@ -26,9 +26,6 @@ public class Mentor {
     private String availableTimes;
     private boolean isAvailable;
 
-    public Mentor() {
-    }
-
     public Mentor(String name, String field, String experience, String availableTimes, boolean isAvailable) {
         this.name = name;
         this.field = field;

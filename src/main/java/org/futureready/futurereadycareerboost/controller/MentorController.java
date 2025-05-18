@@ -1,6 +1,6 @@
 package org.futureready.futurereadycareerboost.controller;
 
-import org.futureready.futurereadycareerboost.model.Mentor;
+import org.futureready.futurereadycareerboost.entity.Mentor;
 import org.futureready.futurereadycareerboost.service.MentorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/mentors")
-@CrossOrigin(origins = "*")
 public class MentorController {
 
     @Autowired

@@ -1,6 +1,6 @@
 package org.futureready.futurereadycareerboost.service;
 
-import org.futureready.futurereadycareerboost.model.Mentor;
+import org.futureready.futurereadycareerboost.entity.Mentor;
 import org.futureready.futurereadycareerboost.repository.MentorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
