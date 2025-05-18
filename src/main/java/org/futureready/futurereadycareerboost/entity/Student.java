@@ -18,9 +18,6 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
-    private StudentProfile studentProfile;
-
     // Getters & Setters
 
     public Long getId() {
@@ -69,13 +66,5 @@ public class Student {
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
-    }
-
-    public StudentProfile getStudentProfile() {
-        return studentProfile;
-    }
-
-    public void setStudentProfile(StudentProfile studentProfile) {
-        this.studentProfile = studentProfile;
     }
 }
