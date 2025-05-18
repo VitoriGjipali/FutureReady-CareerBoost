@@ -1,28 +1,56 @@
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.OneToMany;
+package org.futureready.futurereadycareerboost.entity;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.batch.BatchProperties;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
 
-import java.util.List;
-@Slf4j
 @Entity
 public class Business {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String companyName;
+
+    @Column(unique = true, nullable = false)
     private String email;
+
     private String password;
+
     private String industry;
 
-//    @OneToMany(mappedBy = "business")
-//    private List<BatchProperties.Job> jobs;
+    public Object getCompanyName() {
+        return null;
+    }
+
+    public Object getId() {
+        return null;
+    }
+
+    public void setCompanyName(String companyName) {
+    }
+    public void setEmail(String email) {
+    }
+    public void setPassword(String password) {
+    }
+    public void setIndustry(String industry) {
+    }
+
+    public String getIndustry() {
+        return null;
+    }
+
+
+
+
+
+
 //
-//    @OneToMany(mappedBy = "business")
+//    // Lidhje me entitetin Job (do vijë më vonë)
+//    @OneToMany(mappedBy = "business", cascade = CascadeType.ALL)
+//    private List<Job> jobPosted;
+//
+//    // Lidhje me JobApplication (do vijë më vonë)
+//    @OneToMany(mappedBy = "business", cascade = CascadeType.ALL)
 //    private List<JobApplication> applicationsSentToStudents;
 }
+
