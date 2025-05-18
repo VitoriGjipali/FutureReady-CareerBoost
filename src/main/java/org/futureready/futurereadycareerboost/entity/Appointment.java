@@ -1,34 +1,33 @@
 package org.futureready.futurereadycareerboost.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
+@Entity
 public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime appointmentDate;
-
+    private LocalDateTime dateTime;
     private String topic;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "student_id")
-    private User student; // student që ka rezervuar
+    private Student student;
 
     @ManyToOne
     @JoinColumn(name = "mentor_id")
-    private MentorProfile mentor;
+    private Mentor mentor;
 
-    @Enumerated(EnumType.STRING)
-    private AppointmentStatus status;
+
 }
-

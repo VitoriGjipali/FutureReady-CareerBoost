@@ -1,18 +1,18 @@
-package org.futureready.futurereadycareerboost.Service;
+package org.futureready.futurereadycareerboost.service;
 
-import org.futureready.futurereadycareerboost.Repository.StudentRepository;
 import org.futureready.futurereadycareerboost.entity.Student;
+import org.futureready.futurereadycareerboost.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-    @Service
+@Service
 public class StudentService {
 
     @Autowired
-    private StudentRepository.Studentrepository studentRepository;
+    private StudentRepository studentRepository;
 
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
@@ -28,12 +28,10 @@ public class StudentService {
 
     public Student updateStudent(Long id, Student updatedStudent) {
         return studentRepository.findById(id).map(student -> {
-            student.setEmri(updatedStudent.getEmri());
+            student.setName(updatedStudent.getName());
             student.setEmail(updatedStudent.getEmail());
             student.setPassword(updatedStudent.getPassword());
-            student.setCvLink(updatedStudent.getCvLink());
-            student.setInteresa(updatedStudent.getInteresa());
-            student.setAvailableForJob(updatedStudent.isAvailableForJob());
+            student.setDegree(updatedStudent.getDegree());
             return studentRepository.save(student);
         }).orElse(null);
     }
@@ -42,4 +40,3 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 }
-

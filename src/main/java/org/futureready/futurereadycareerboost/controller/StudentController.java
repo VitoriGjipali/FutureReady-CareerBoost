@@ -1,6 +1,6 @@
 package org.futureready.futurereadycareerboost.controller;
 
-import org.futureready.futurereadycareerboost.Service.StudentService;
+import org.futureready.futurereadycareerboost.service.StudentService;
 import org.futureready.futurereadycareerboost.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

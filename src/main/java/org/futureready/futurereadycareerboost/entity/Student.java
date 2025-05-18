@@ -1,6 +1,7 @@
 package org.futureready.futurereadycareerboost.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -9,20 +10,18 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String emri;
+    private String name;
     private String email;
     private String password;
+    private String degree;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
 
-    public Student() {}
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    private StudentProfile studentProfile;
 
-
-    public Student(String emri, String email, String password) {
-        this.emri = emri;
-        this.email = email;
-        this.password = password;
-    }
-
+    // Getters & Setters
 
     public Long getId() {
         return id;
@@ -32,12 +31,12 @@ public class Student {
         this.id = id;
     }
 
-    public String getEmri() {
-        return emri;
+    public String getName() {
+        return name;
     }
 
-    public void setEmri(String emri) {
-        this.emri = emri;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -54,5 +53,29 @@ public class Student {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
     }
 }
