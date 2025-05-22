@@ -32,6 +32,7 @@ public class JobApplication {
 
     }
 
+
     public void setDescription(String description) {
-    }
+}
 }
