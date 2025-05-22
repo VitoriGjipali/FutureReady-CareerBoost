@@ -1,7 +1,10 @@
 package org.futureready.futurereadycareerboost.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import java.util.List;
 
+@Data
 @Entity
 public class Business {
 
@@ -18,38 +21,12 @@ public class Business {
 
     private String industry;
 
-    public Object getCompanyName() {
-        return null;
-    }
 
-    public Object getId() {
-        return null;
-    }
+    // Lidhje me entitetin Job
+    @OneToMany(mappedBy = "business", cascade = CascadeType.ALL)
+    private List<Job> jobPosted;
 
-    public void setCompanyName(String companyName) {
-    }
-    public void setEmail(String email) {
-    }
-    public void setPassword(String password) {
-    }
-    public void setIndustry(String industry) {
-    }
-
-    public String getIndustry() {
-        return null;
-    }
-
-
-
-
-
-
-//
-//    // Lidhje me entitetin Job (do vijë më vonë)
-//    @OneToMany(mappedBy = "business", cascade = CascadeType.ALL)
-//    private List<Job> jobPosted;
-//
-//    // Lidhje me JobApplication (do vijë më vonë)
+//    // Lidhje me JobApplication
 //    @OneToMany(mappedBy = "business", cascade = CascadeType.ALL)
 //    private List<JobApplication> applicationsSentToStudents;
 }

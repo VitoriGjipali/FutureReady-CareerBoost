@@ -1,15 +1,11 @@
 package org.futureready.futurereadycareerboost.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Appointment {
 
@@ -18,8 +14,10 @@ public class Appointment {
     private Long id;
 
     private LocalDateTime dateTime;
+
     private String topic;
-    private String status;
+
+    private String status; // PENDING, CONFIRMED, CANCELED
 
     @ManyToOne
     @JoinColumn(name = "student_id")
