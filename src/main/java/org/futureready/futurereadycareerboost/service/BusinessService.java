@@ -1,10 +1,9 @@
 package org.futureready.futurereadycareerboost.service;
 
 import lombok.RequiredArgsConstructor;
-import org.futureready.futurereadycareerboost.entity.Business;
+import org.futureready.futurereadycareerboost.entity.*;
 import org.futureready.futurereadycareerboost.entity.Job;
-import org.futureready.futurereadycareerboost.entity.JobApplication;
-import org.futureready.futurereadycareerboost.repository.BusinessRepository;
+import org.futureready.futurereadycareerboost.repository.*;
 import org.futureready.futurereadycareerboost.repository.JobRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,10 @@ public class BusinessService {
 
     private final BusinessRepository businessRepository;
     private final JobRepository jobRepository;
-
+    private final MentorRepository mentorRepository;
+    private final AppointmentRepository appointmentRepository;
+    private final JobApplicatinRepository jobApplicationRepository;
+    private final StudentRepository studentRepository;
 
 
     // Merr të gjithë bizneset
@@ -53,4 +55,50 @@ public class BusinessService {
             throw new RuntimeException("Business not found");
         }
     }
+
+    public void publishJob(Long businessId, String title, String description, LocalDate deadline) {
+        Business business = businessRepository.findById(businessId)
+                .orElseThrow(() -> new RuntimeException("Business not found"));
+
+        Job job = new Job();
+        job.setTitle(title);
+        job.setDescription(description);
+        job.setDeadline(deadline);
+        job.setBusiness(business);
+
+        jobRepository.save(job);
+    }
+
+    public void approveApplication(Long applicationId) {
+        JobApplication app = jobApplicationRepository.findById(applicationId)
+                .orElseThrow(() -> new RuntimeException("Application not found"));
+        app.setStatus("APPROVED");
+        jobApplicationRepository.save(app);
+    }
+
+
+    public List<Mentor> getAllMentors() {
+        return mentorRepository.findAll();
+    }
+
+    public List<Appointment> getStudentsByMentor(Long mentorId) {
+        return appointmentRepository.findByMentorId(mentorId);
+    }
+
+    public void sendApplication(Long businessId, Long studentId, String description) {
+        Business business = businessRepository.findById(businessId)
+                .orElseThrow(() -> new RuntimeException("Business not found"));
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+
+        JobApplication app = new JobApplication();
+        app.setBusiness(business);
+        app.setStudent(student);
+        app.setDescription(description);
+        app.setStatus("SENT");
+
+        jobApplicationRepository.save(app);
+    }
+
+
 }

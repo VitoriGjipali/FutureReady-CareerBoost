@@ -31,4 +31,7 @@ public class JobApplication {
     public void setStatus(String pending) {
 
     }
+
+    public void setDescription(String description) {
+    }
 }
