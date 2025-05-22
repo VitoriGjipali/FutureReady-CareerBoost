@@ -37,7 +37,7 @@ public class AppointmentController {
     public ResponseEntity<Void> updateStatus(
             @PathVariable Long appointmentId,
             @RequestParam String status) {
-        appointmentService.updateStatus(appointmentId, status);
+        appointmentService.updateAppointmentStatus(appointmentId, status);
         return ResponseEntity.ok().build();
     }
 }

@@ -23,16 +23,15 @@ public class AppointmentService {
     public Appointment createAppointment(Long studentId, Long mentorId, String topic) {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new RuntimeException("Student not found"));
-
         Mentor mentor = mentorRepository.findById(mentorId)
                 .orElseThrow(() -> new RuntimeException("Mentor not found"));
 
         Appointment appointment = new Appointment();
         appointment.setStudent(student);
         appointment.setMentor(mentor);
-        appointment.setDateTime(LocalDateTime.now()); // ose kalo si param
         appointment.setTopic(topic);
         appointment.setStatus("PENDING");
+        appointment.setDateTime(LocalDateTime.now());
 
         return appointmentRepository.save(appointment);
     }
@@ -45,7 +44,7 @@ public class AppointmentService {
         return appointmentRepository.findByMentorId(mentorId);
     }
 
-    public void updateStatus(Long appointmentId, String newStatus) {
+    public void updateAppointmentStatus(Long appointmentId, String newStatus) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new RuntimeException("Appointment not found"));
 
@@ -53,4 +52,3 @@ public class AppointmentService {
         appointmentRepository.save(appointment);
     }
 }
-
