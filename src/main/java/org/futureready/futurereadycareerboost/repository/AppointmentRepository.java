@@ -8,4 +8,6 @@ import java.util.List;
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
     List<Appointment> findByStudentId(Long studentId);
     List<Appointment> findByMentorId(Long mentorId);
+
+    List<Appointment> findByStudentIdAndMentorId(Long studentId, Long mentorId);
 }
