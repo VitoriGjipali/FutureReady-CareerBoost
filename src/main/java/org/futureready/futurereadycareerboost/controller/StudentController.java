@@ -1,9 +1,10 @@
 package org.futureready.futurereadycareerboost.controller;
 
+import org.futureready.futurereadycareerboost.entity.Appointment;
 import org.futureready.futurereadycareerboost.entity.Mentor;
+import org.futureready.futurereadycareerboost.entity.Student;
 import org.futureready.futurereadycareerboost.service.MentorService;
 import org.futureready.futurereadycareerboost.service.StudentService;
-import org.futureready.futurereadycareerboost.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,5 +54,40 @@ import java.util.List;
             return ResponseEntity.noContent().build();
         }
 
+    @GetMapping("/mentors")
+    public ResponseEntity<List<Mentor>> getAllMentors() {
+        return ResponseEntity.ok(studentService.getAllMentors());
+    }
+
+    @GetMapping("/mentors/filter")
+    public ResponseEntity<List<Mentor>> getMentorsByField(@RequestParam String field) {
+        return ResponseEntity.ok(studentService.getMentorsByField(field));
+    }
+
+    @PutMapping("/{studentId}/profile")
+    public ResponseEntity<Student> updateProfile(
+            @PathVariable Long studentId,
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam String degree) {
+        return ResponseEntity.ok(studentService.updateProfile(studentId, name, email, degree));
+    }
+
+    @PostMapping("/{studentId}/appointments")
+    public ResponseEntity<?> createOrCancelAppointment(
+            @PathVariable Long studentId,
+            @RequestParam Long mentorId,
+            @RequestParam String topic,
+            @RequestParam(defaultValue = "false") boolean cancel) {
+        Appointment result = studentService.createOrCancelAppointment(studentId, mentorId, topic, cancel);
+        return ResponseEntity.ok(result != null ? result : "Takimi u anulua me sukses.");
+    }
+
+    @PostMapping("/{studentId}/apply")
+    public ResponseEntity<String> applyToJob(
+            @PathVariable Long studentId,
+            @RequestParam Long jobId) {
+        return ResponseEntity.ok(studentService.applyToJob(studentId, jobId));
+    }
     }
 
