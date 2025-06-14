@@ -10,4 +10,5 @@ public class FutureReadyCareerBoostApplication {
         SpringApplication.run(FutureReadyCareerBoostApplication.class, args);
     }
 
+
 }

@@ -50,13 +50,8 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public List<Mentor> getAllMentors() {
-        return mentorRepository.findAll();
-    }
+  
 
-    public List<Mentor> getMentorsByField(String field) {
-        return mentorRepository.findByFieldContainingIgnoreCase(field);
-    }
 
     public Student updateProfile(Long studentId, String name, String email, String degree) {
         Student student = studentRepository.findById(studentId)

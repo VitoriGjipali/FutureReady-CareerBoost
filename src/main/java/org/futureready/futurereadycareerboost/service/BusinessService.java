@@ -69,21 +69,8 @@ public class BusinessService {
         jobRepository.save(job);
     }
 
-    public void approveApplication(Long applicationId) {
-        JobApplication app = jobApplicationRepository.findById(applicationId)
-                .orElseThrow(() -> new RuntimeException("Application not found"));
-        app.setStatus("APPROVED");
-        jobApplicationRepository.save(app);
-    }
 
 
-    public List<Mentor> getAllMentors() {
-        return mentorRepository.findAll();
-    }
-
-    public List<Appointment> getStudentsByMentor(Long mentorId) {
-        return appointmentRepository.findByMentorId(mentorId);
-    }
 
     public void sendApplication(Long businessId, Long studentId, String description) {
         Business business = businessRepository.findById(businessId)
