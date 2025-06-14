@@ -51,9 +51,6 @@ public class MentorService {
     }
 
 
-    public List<Mentor> getMentorsByField(String field) {
-        return mentorRepository.findByFieldContainingIgnoreCase(field);
-    }
 
     //Pranon ose refuzon takime
     public void updateAppointmentStatus(Long appointmentId, String newStatus) {
@@ -76,14 +73,8 @@ public class MentorService {
     }
 
     //Ofron listë biznesesh (i shfaqet studentit)
-    public List<Business> getAllBusinesses() {
-        return businessRepository.findAll();
-    }
 
-    // Lista e studentëve që ka ndihmuar mentori
-    public List<Appointment> getAppointmentsForMentor(Long mentorId) {
-        return appointmentRepository.findByMentorId(mentorId);
-    }
+
 
     public Mentor updateProfile(Long mentorId, String field, String experience, String timetable) {
         Mentor mentor = mentorRepository.findById(mentorId)
@@ -92,5 +83,9 @@ public class MentorService {
         mentor.setExperience(experience);
         mentor.setAvailableTimes(timetable);
         return mentorRepository.save(mentor);
+    }
+
+    public List<Mentor> getMentorsByField(String field) {
+        return mentorRepository.findByFieldContainingIgnoreCase(field);
     }
 }

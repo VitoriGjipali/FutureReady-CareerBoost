@@ -31,4 +31,5 @@ public class JobService {
     public void deleteJob(Long id) {
         jobRepository.deleteById(id);
     }
+
 }

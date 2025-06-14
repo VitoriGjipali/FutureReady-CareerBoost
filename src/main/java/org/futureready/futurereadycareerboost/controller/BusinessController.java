@@ -36,7 +36,7 @@ public class BusinessController {
     }
 
     // Shto një biznes të ri
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Business> createBusiness(@RequestBody Business business) {
         return ResponseEntity.ok(businessRepository.save(business));
     }
@@ -78,24 +78,10 @@ public class BusinessController {
     }
 
 
-    //Pranon aplikim
-    @PatchMapping("/applications/{applicationId}/approve")
-    public ResponseEntity<Void> approveApplication(@PathVariable Long applicationId) {
-        businessService.approveApplication(applicationId);
-        return ResponseEntity.ok().build();
-    }
 
-    //Merr të gjithë mentorët
-    @GetMapping("/mentors")
-    public ResponseEntity<List<Mentor>> getAllMentors() {
-        return ResponseEntity.ok(businessService.getAllMentors());
-    }
 
-    //Merr studentët për një mentor
-    @GetMapping("/mentors/{mentorId}/students")
-    public ResponseEntity<List<Appointment>> getStudentsByMentor(@PathVariable Long mentorId) {
-        return ResponseEntity.ok(businessService.getStudentsByMentor(mentorId));
-    }
+
+
 
     //Dërgon aplikim te student
     @PostMapping("/{businessId}/send-application")

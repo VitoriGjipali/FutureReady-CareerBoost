@@ -30,7 +30,7 @@ public class MentorController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Mentor> createMentor(@RequestBody Mentor mentor) {
         return ResponseEntity.ok(mentorService.createMentor(mentor));
     }
@@ -50,12 +50,12 @@ public class MentorController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/search")
+    @GetMapping("/searchByField")
     public ResponseEntity<List<Mentor>> getMentorsByField(@RequestParam String field) {
         return ResponseEntity.ok(mentorService.getMentorsByField(field));
     }
 
-    //Pranon ose refuzon takim
+
 
     @PatchMapping("/appointments/{appointmentId}/status")
     public ResponseEntity<Void> updateAppointmentStatus(
@@ -65,7 +65,7 @@ public class MentorController {
         return ResponseEntity.ok().build();
     }
 
-    //Përditëson profilin e vet
+
 
     @PutMapping("/{mentorId}/profile")
     public ResponseEntity<Mentor> updateProfile(
@@ -77,18 +77,7 @@ public class MentorController {
                 mentorService.updateProfile(mentorId, field, experience, timetable));
     }
 
-    //Lista e bizneseve që shfaqen për studentin
-    @GetMapping("/businesses")
-    public ResponseEntity<List<Business>> getAllBusinesses() {
-        return ResponseEntity.ok(mentorService.getAllBusinesses());
-    }
 
-    //Lista e studentëve që ka ndihmuar mentori
-    @GetMapping("/{mentorId}/students")
-    public ResponseEntity<List<Appointment>> getAppointmentsForMentor(
-            @PathVariable Long mentorId) {
-        return ResponseEntity.ok(mentorService.getAppointmentsForMentor(mentorId));
-    }
 
 
 
